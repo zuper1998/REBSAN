@@ -15,6 +15,10 @@ FetchContent_MakeAvailable(googletest)
 add_executable(REBSAN main.cpp
         Algorithms/Utility/visibility_interval.cpp
         Algorithms/Utility/visiblity_interval.h
+        Algorithms/Graph/time_varying_graph.cpp
+        Algorithms/Graph/time_varying_graph.h
+        Algorithms/Graph/Node.cpp
+        Algorithms/Graph/Node.h
 )
 
 
@@ -25,6 +29,11 @@ add_executable(
         Tests/interva_test.cc
         Algorithms/Utility/visibility_interval.cpp
         Algorithms/Utility/visiblity_interval.h
+        Tests/graph_test.cc
+        Algorithms/Graph/time_varying_graph.cpp
+        Algorithms/Graph/time_varying_graph.h
+        Algorithms/Graph/Node.cpp
+        Algorithms/Graph/Node.h
 )
 target_link_libraries(
         hello_test
