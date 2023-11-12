@@ -34,6 +34,7 @@ add_executable(
         Algorithms/Graph/time_varying_graph.h
         Algorithms/Graph/Node.cpp
         Algorithms/Graph/Node.h
+        Tests/NodeTest.h
 )
 target_link_libraries(
         GraphTest
