@@ -25,20 +25,20 @@ add_executable(REBSAN main.cpp
 enable_testing()
 
 add_executable(
-        hello_test
+        GraphTest
         Tests/interva_test.cc
+        Tests/graph_test.cc
         Algorithms/Utility/visibility_interval.cpp
         Algorithms/Utility/visiblity_interval.h
-        Tests/graph_test.cc
         Algorithms/Graph/time_varying_graph.cpp
         Algorithms/Graph/time_varying_graph.h
         Algorithms/Graph/Node.cpp
         Algorithms/Graph/Node.h
 )
 target_link_libraries(
-        hello_test
+        GraphTest
         GTest::gtest_main
 )
 
 include(GoogleTest)
-gtest_discover_tests(hello_test)
+gtest_discover_tests(GraphTest)

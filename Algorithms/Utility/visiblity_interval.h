@@ -9,16 +9,19 @@
 
 
 
+
+
+
 template <typename TR_TYPE=float>
     class visiblity_interval {
     float start;
     float end;
-    TR_TYPE troughput;
+    TR_TYPE data;
 
 
 public:
-    visiblity_interval(const float _start,const float _end) : start(_start), end(_end), troughput(0) {}
-    visiblity_interval(const float _start,const float _end,const float _troughput) : start(_start), end(_end), troughput(_troughput) {}
+    visiblity_interval(const float _start,const float _end) : start(_start), end(_end) {}
+    visiblity_interval(const float _start,const float _end,const TR_TYPE _troughput) : start(_start), end(_end), data(_troughput) {}
 
 
     [[nodiscard]] bool precede(const visiblity_interval  &other) const;
@@ -41,10 +44,18 @@ public:
     [[nodiscard]] bool finishes(const visiblity_interval  &other) const;
     [[nodiscard]] bool ifinishes(const visiblity_interval  &other) const;
 
+
+
+    friend bool operator==(const visiblity_interval&v1, const visiblity_interval&v2) {
+        const bool data_match = v1.data == v2.data;
+        const bool interval_match = v1.equal(v2);
+        return data_match && interval_match;
+    }
+
     friend std::ostream& operator<<(std::ostream&stream, const visiblity_interval<TR_TYPE>&vi){
         stream << vi.start << " --- " << vi.end;
-        if (vi.troughput!=0) {
-            stream << vi.troughput;
+        if (vi.data!=TR_TYPE()) {
+            stream << vi.data;
         }
         return stream;
     }
@@ -121,8 +132,8 @@ bool visiblity_interval<TR_TYPE>::ifinishes(const visiblity_interval& other) con
 template<typename TR_TYPE>
 std::ostream& operator<<(std::ostream& stream, const visiblity_interval<TR_TYPE>& vi) {
     stream << vi.start << " --- " << vi.end;
-    if (vi.troughput !=0 ) {
-        stream << " : " << vi.troughput;
+    if (vi.data !=0 ) {
+        stream << " : " << vi.data;
     }
     return stream;
 }
