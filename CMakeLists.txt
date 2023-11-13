@@ -26,7 +26,7 @@ enable_testing()
 
 add_executable(
         GraphTest
-        Tests/interva_test.cc
+        Tests/interval_test.cc
         Tests/graph_test.cc
         Algorithms/Utility/visibility_interval.cpp
         Algorithms/Utility/visiblity_interval.h
@@ -36,10 +36,15 @@ add_executable(
         Algorithms/Graph/Node.h
         Tests/NodeTest.h
 )
+
+
+
 target_link_libraries(
         GraphTest
         GTest::gtest_main
 )
+
+
 
 include(GoogleTest)
 gtest_discover_tests(GraphTest)

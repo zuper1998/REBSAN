@@ -13,7 +13,7 @@ bool contains(edge_container ec, const visiblity_interval<edge_data> & target) {
     return it!=ec.end();
 }
 
-TEST(NodeT, CTOR_TEST) {
+TEST(NodeTestNoF, CTOR_TEST) {
     Node n1 = Node("N1");
     Node n2 = Node("N2",edge_container());
 

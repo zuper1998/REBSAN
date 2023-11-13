@@ -10,7 +10,7 @@
 
 
 // Demonstrate some basic assertions.
-TEST(TestBasicXY, BasicAssertions) {
+TEST(TestIntervals, CtorAndStuff) {
     visiblity_interval const v1(0,2);
     visiblity_interval const v2(2,5);
     visiblity_interval const v3(1,6);
