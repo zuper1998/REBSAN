@@ -7,6 +7,7 @@
 
 #include "NodeTest.h"
 #include "../Algorithms/Graph/Node.h"
+#include "../Algorithms/Graph/time_varying_graph.h"
 
 bool contains(edge_container ec, const visiblity_interval<edge_data> & target) {
     const auto it = std::ranges::find(ec, target);
@@ -33,6 +34,44 @@ TEST_F(NodeTest,AddingEdges) {
     ASSERT_TRUE(contains(n2_->getEdges(),visiblity_interval<edge_data>(6, 9, edge_data(0.2,n3_)))) << "Error in adding edge for " << n2_;
 
 }
+
+
+
+TEST_F(NodeTest,RangeFindTest) {
+
+    int cnt = 0;
+    auto edges = n2_->get_edges_between(0,11);
+    for (auto e : edges ) {
+        cnt ++;
+
+    }
+    ASSERT_EQ(2,cnt) << "Wrong number of edges printes: " << cnt;
+
+}
+
+
+TEST(TestGraph,CTORTest) {
+    time_varying_graph tvg{};
+
+    ASSERT_EQ(tvg.getNodes().size(),0);
+}
+
+TEST(TestGraph,BasicFuntions) {
+    time_varying_graph tvg{};
+    ASSERT_EQ(tvg.getNodes().size(),0);
+
+    tvg.addNode("AAA");
+
+    ASSERT_EQ(tvg.getNodes().size(),1) << "Failed adding node";
+
+    Node &n =  tvg.addNode("AAA");
+
+    ASSERT_NE(tvg.getNodes().size(),2) << "Node was added two times ";
+
+    ASSERT_STREQ(n.getName().c_str(),"AAA");
+
+}
+
 
 
 
