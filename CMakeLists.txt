@@ -19,6 +19,7 @@ add_executable(REBSAN main.cpp
         Algorithms/Graph/time_varying_graph.h
         Algorithms/Graph/Node.cpp
         Algorithms/Graph/Node.h
+        Algorithms/Utility/SearchInterval.h
 )
 
 
@@ -35,6 +36,7 @@ add_executable(
         Algorithms/Graph/Node.cpp
         Algorithms/Graph/Node.h
         Tests/NodeTest.h
+        Algorithms/Utility/SearchInterval.h
 )
 
 
