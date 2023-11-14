@@ -15,3 +15,9 @@ Node& time_varying_graph::addNode(std::string name) {
     }
     return nodes[name];
 }
+Node& time_varying_graph::getNode(std::string name) {
+    if (nodes.contains(name)) {
+        return nodes[name];
+    }
+    throw std::invalid_argument("Cant find name in map");
+}

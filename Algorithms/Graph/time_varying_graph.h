@@ -21,6 +21,8 @@ public:
 
     Node& addNode(std::string);
 
+    Node& getNode(std::string);
+
     std::forward_list<visiblity_interval<edge_data>> path_from_to_during(Node*,Node*,float,float);
 };
 

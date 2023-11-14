@@ -70,6 +70,11 @@ TEST(TestGraph,BasicFuntions) {
 
     ASSERT_STREQ(n.getName().c_str(),"AAA");
 
+    Node &n2 = tvg.getNode("AAA");
+
+    ASSERT_EQ(n,n2);
+
+
 }
 
 

@@ -37,6 +37,7 @@ add_executable(
         Algorithms/Graph/Node.h
         Tests/NodeTest.h
         Algorithms/Utility/SearchInterval.h
+        Tests/GraphTest.h
 )
 
 

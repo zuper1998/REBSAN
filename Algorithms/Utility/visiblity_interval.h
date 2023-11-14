@@ -21,7 +21,7 @@ template <typename TR_TYPE=float>
 
 public:
     visiblity_interval(const float _start,const float _end) : start(_start), end(_end) {}
-    visiblity_interval(const float _start,const float _end,const TR_TYPE _troughput) : start(_start), end(_end), data(_troughput) {}
+    visiblity_interval(const float _start,const float _end,const TR_TYPE _data) : start(_start), end(_end), data(_data) {}
 
 
     [[nodiscard]] bool precede(const visiblity_interval  &other) const;

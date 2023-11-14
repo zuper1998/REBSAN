@@ -55,6 +55,11 @@ public:
     void add_edge(const visiblity_interval<edge_data> & new_edge);
 
 
+    bool operator==(const Node& other) const {
+        return name == other.name;
+    }
+
+
     friend std::ostream& operator <<(std::ostream& os,const edge_data& ed);
     friend std::ostream& operator <<(std::ostream& os,const Node& n);
     friend std::ostream& operator <<(std::ostream& os,const Node* n);
