@@ -84,9 +84,21 @@ TEST_F(GraphTest, PathGeneration) {
     Node& destination = tvg_->getNode("C");
     search_interval si{0,3};
 
-    auto data = tvg_->path_from_to_during(&start,&destination,si);
+    auto data = tvg_->path_from_to(&start,&destination);
 
-    int a =2;
+    for(const tvg_path& path : data) {
+        for(auto edge : path) {
+            std::cout<< edge << " || ";
+        }
+
+        std::cout<<std::endl;
+
+    }
+
+    ASSERT_EQ(data.size(),2);
+
+
+
 }
 
 

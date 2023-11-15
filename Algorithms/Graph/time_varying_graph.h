@@ -7,15 +7,19 @@
 #include <forward_list>
 #include <unordered_map>
 #include <string>
+#include <iostream>
+#include <algorithm>
+#include <set>
 
 #include "Node.h"
 
 
 typedef std::list<visiblity_interval<edge_data>> tvg_path;
 
-
 class time_varying_graph {
     std::unordered_map<std::string,Node> nodes;
+
+
 public:
     const std::unordered_map<std::string,Node>& getNodes() {
         return nodes;
@@ -27,7 +31,9 @@ public:
 
     Node& getNode(std::string);
 
-    std::list<tvg_path> path_from_to_during(Node*,Node*,search_interval si);
+    std::list<tvg_path> path_from_to_during(Node*,Node*,search_interval si,std::set<Node*>);
+
+    std::list<tvg_path> path_from_to(Node*,Node*);
 };
 
 

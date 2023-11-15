@@ -8,11 +8,6 @@
 
 
 
-
-
-
-
-
 template <typename TR_TYPE=float>
 class visiblity_interval {
     TR_TYPE data;

@@ -29,7 +29,8 @@ protected:
         NODE_AT(0).add_edge(visiblity_interval<edge_data>(1,2,std::make_pair(2.0,&NODE_AT(3))));
         NODE_AT(3).add_edge(visiblity_interval<edge_data>(0,4,std::make_pair(2.0,&NODE_AT(2))));
 
-
+        // Add circle
+        NODE_AT(3).add_edge(visiblity_interval<edge_data>(0,4,std::make_pair(2.0,&NODE_AT(0))));
 
 
     }

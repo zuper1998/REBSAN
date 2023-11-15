@@ -6,14 +6,33 @@
 #define SEARCHINTERVAL_H
 #include <algorithm>
 
-#define MAX_LEN 7.0;
+
+#define MAX_LEN 5.1;
 
 class search_interval {
     float begin;
     float end;
     const float max_size = MAX_LEN;
 public:
+    search_interval() : begin(-1), end(-1) {}
     search_interval(const float _begin, const float _end ) : begin(_begin), end(_end) {}
+    search_interval(search_interval&& other) noexcept {
+        begin = other.begin;
+        end = other.end;
+    }
+    search_interval(const search_interval& other) noexcept {
+        begin = other.begin;
+        end = other.end;
+    }
+
+    search_interval& operator=(const search_interval& other) {
+        begin = other.begin;
+        end = other.end;
+        return *this;
+    }
+
+
+
     [[nodiscard]] search_interval addInterval(const float nbegin, const float nend) const {
         search_interval n_interval{begin,end};
 

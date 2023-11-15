@@ -16,7 +16,7 @@ bool operator!=(const edge_data& e1,const edge_data& e2) {
 }
 
 std::ostream& operator<<(std::ostream& os, const edge_data& ed) {
-    os << "Tr: " << ed.first << " Target: " << *ed.second;
+    os << " Tr: " << ed.first << " Target: " << *ed.second;
 
     return os;
 }
