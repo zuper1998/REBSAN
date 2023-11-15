@@ -12,14 +12,14 @@
 
 
 
+
 template <typename TR_TYPE=float>
-    class visiblity_interval {
-    float start;
-    float end;
+class visiblity_interval {
     TR_TYPE data;
 
-
 public:
+    float start;
+    float end;
     visiblity_interval(const float _start,const float _end) : start(_start), end(_end) {}
     visiblity_interval(const float _start,const float _end,const TR_TYPE _data) : start(_start), end(_end), data(_data) {}
 
@@ -45,6 +45,9 @@ public:
     [[nodiscard]] bool ifinishes(const visiblity_interval  &other) const;
 
 
+    const TR_TYPE& getData() const {
+        return data;
+    }
 
     friend bool operator==(const visiblity_interval&v1, const visiblity_interval&v2) {
         const bool data_match = v1.data == v2.data;
@@ -60,7 +63,6 @@ public:
         return stream;
     }
 };
-
 
 // Definition needs to be here bc: https://isocpp.org/wiki/faq/templates#templates-defn-vs-decl
 template <typename TR_TYPE>

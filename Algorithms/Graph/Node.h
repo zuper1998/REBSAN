@@ -10,6 +10,7 @@
 #include <utility>
 #include <vector>
 
+#include "../Utility/SearchInterval.h"
 #include "../Utility/visiblity_interval.h"
 
 class Node;
@@ -51,6 +52,13 @@ public:
 
         return edge_iterator;
     }
+
+
+    auto get_edges_between(const search_interval &si) {
+        auto [fst, snd]  = si.getExtendedIntervals();
+        return get_edges_between(fst,snd);
+    }
+
 
     void add_edge(const visiblity_interval<edge_data> & new_edge);
 

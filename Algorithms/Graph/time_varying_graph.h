@@ -10,6 +10,10 @@
 
 #include "Node.h"
 
+
+typedef std::list<visiblity_interval<edge_data>> tvg_path;
+
+
 class time_varying_graph {
     std::unordered_map<std::string,Node> nodes;
 public:
@@ -23,7 +27,7 @@ public:
 
     Node& getNode(std::string);
 
-    std::forward_list<visiblity_interval<edge_data>> path_from_to_during(Node*,Node*,float,float);
+    std::list<tvg_path> path_from_to_during(Node*,Node*,search_interval si);
 };
 
 

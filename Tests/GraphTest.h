@@ -17,7 +17,7 @@ class GraphTest : public testing::Test {
 protected:
     void SetUp() {
         tvg_ = new time_varying_graph();
-        std::vector<std::string> names = {"A","B","C","D"};
+        const std::vector<std::string> names = {"A","B","C","D"};
 
         for (const auto name : names) {
             tvg_->addNode(name);

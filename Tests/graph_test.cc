@@ -6,6 +6,7 @@
 #include <gtest/gtest.h>
 
 #include "NodeTest.h"
+#include "GraphTest.h"
 #include "../Algorithms/Graph/Node.h"
 #include "../Algorithms/Graph/time_varying_graph.h"
 
@@ -76,6 +77,20 @@ TEST(TestGraph,BasicFuntions) {
 
 
 }
+
+
+TEST_F(GraphTest, PathGeneration) {
+    Node& start = tvg_->getNode("A");
+    Node& destination = tvg_->getNode("C");
+    search_interval si{0,3};
+
+    auto data = tvg_->path_from_to_during(&start,&destination,si);
+
+    int a =2;
+}
+
+
+
 
 
 
