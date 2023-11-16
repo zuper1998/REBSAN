@@ -82,9 +82,8 @@ TEST(TestGraph,BasicFuntions) {
 TEST_F(GraphTest, PathGeneration) {
     Node& start = tvg_->getNode("A");
     Node& destination = tvg_->getNode("C");
-    search_interval si{0,3};
 
-    auto data = tvg_->path_from_to(&start,&destination);
+    const auto data = tvg_->path_from_to(&start,&destination);
 
     for(const tvg_path& path : data) {
         for(auto edge : path) {

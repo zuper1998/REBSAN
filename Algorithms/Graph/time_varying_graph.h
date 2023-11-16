@@ -9,6 +9,7 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <filesystem>
 #include <set>
 
 #include "Node.h"
@@ -34,6 +35,14 @@ public:
     std::list<tvg_path> path_from_to_during(Node*,Node*,search_interval si,std::set<Node*>);
 
     std::list<tvg_path> path_from_to(Node*,Node*);
+
+    std::string export_to_graphviz();
+
+    void save_graph_to_file(std::filesystem::path);
+
+    friend std::ostream& operator<<(std::ostream&os,const time_varying_graph& tvg);
+
+
 };
 
 

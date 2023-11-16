@@ -13,6 +13,7 @@
 #include "../Utility/SearchInterval.h"
 #include "../Utility/visiblity_interval.h"
 
+
 class Node;
 
 typedef std::pair<float,Node*> edge_data;
@@ -43,6 +44,8 @@ public:
     const std::string& getName() {
         return name;
     }
+
+    std::string export_to_graphviz() const;
 
     auto get_edges_between(float _start, float _end) {
         visiblity_interval<edge_data> v_finder(_start,_end);

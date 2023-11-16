@@ -20,6 +20,7 @@ add_executable(REBSAN main.cpp
         Algorithms/Graph/Node.cpp
         Algorithms/Graph/Node.h
         Algorithms/Utility/SearchInterval.h
+        Algorithms/Utility/file_utility.h
 )
 
 
@@ -38,6 +39,8 @@ add_executable(
         Tests/NodeTest.h
         Algorithms/Utility/SearchInterval.h
         Tests/GraphTest.h
+        Tests/test_file_load.cc
+        Algorithms/Utility/file_utility.h
 )
 
 

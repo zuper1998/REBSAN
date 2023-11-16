@@ -7,9 +7,7 @@
 
 
 Node& time_varying_graph::addNode(std::string name) {
-    if (nodes.contains(name)) {
-        std::cerr << "Double adding of node: " << name << std::endl;
-    } else {
+    if (!nodes.contains(name)) {
         nodes.emplace(name,name);
     }
     return nodes[name];
@@ -84,4 +82,26 @@ std::list<tvg_path> time_varying_graph::path_from_to_during(Node* start,Node* de
 
 
     return ret;
+}
+
+
+std::string time_varying_graph::export_to_graphviz() {
+    std::stringstream ss;
+
+    ss << "digraph {" << std::endl;
+    for(auto data : nodes) {
+        ss << data.second.export_to_graphviz();
+    }
+    ss << "}" << std::endl;
+
+    return ss.str();
+}
+
+
+std::ostream& operator<<(std::ostream&os,const time_varying_graph& tvg) {
+    for(auto data:tvg.nodes) {
+        os << data.second << std::endl;
+    }
+
+    return os;
 }

@@ -5,6 +5,8 @@
 #ifndef ALLEN_ALGEBRA_H
 #define ALLEN_ALGEBRA_H
 #include <ostream>
+#include <sstream>
+
 
 
 
@@ -39,6 +41,9 @@ public:
     [[nodiscard]] bool finishes(const visiblity_interval  &other) const;
     [[nodiscard]] bool ifinishes(const visiblity_interval  &other) const;
 
+
+
+    std::string export_to_graphviz(const std::string& from);
 
     const TR_TYPE& getData() const {
         return data;
@@ -124,6 +129,7 @@ template <typename TR_TYPE>
 bool visiblity_interval<TR_TYPE>::ifinishes(const visiblity_interval& other) const {
     return other.finishes(*this);
 }
+
 
 
 template<typename TR_TYPE>
