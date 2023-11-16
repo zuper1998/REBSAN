@@ -9,6 +9,7 @@
 #include "GraphTest.h"
 #include "../Algorithms/Graph/Node.h"
 #include "../Algorithms/Graph/time_varying_graph.h"
+#include "../Algorithms/Utility/file_utility.h"
 
 bool contains(edge_container ec, const visiblity_interval<edge_data> & target) {
     const auto it = std::ranges::find(ec, target);
@@ -94,13 +95,30 @@ TEST_F(GraphTest, PathGeneration) {
 
     }
 
-    ASSERT_EQ(data.size(),2);
-
-
-
+    ASSERT_EQ(data.size(),3);
 }
 
 
+
+TEST(BigGraphTest, PathGeneration) {
+    time_varying_graph tvg= file_utility::load_tvg_from_file("/home/andris/CLionProjects/REBSAN/TestInput/TEST_SAT.sat");
+
+    Node& start = tvg.getNode("B");
+    Node& destination = tvg.getNode("H");
+
+    const auto data = tvg.path_from_to(&start,&destination);
+
+    for(const tvg_path& path : data) {
+        for(auto edge : path) {
+            std::cout<< edge << " || ";
+        }
+
+        std::cout<<std::endl;
+
+    }
+
+    ASSERT_EQ(data.size(),2);
+}
 
 
 

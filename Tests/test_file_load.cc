@@ -19,7 +19,9 @@ TEST(TVGFIle,TestLoad) {
     time_varying_graph tvg= file_utility::load_tvg_from_file("/home/andris/CLionProjects/REBSAN/TestInput/TEST_SAT.sat");
 
 
-    std::cout << tvg.export_to_graphviz();
+    //std::cout << tvg.export_to_graphviz();
+
+
 
 
 

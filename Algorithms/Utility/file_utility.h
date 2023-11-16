@@ -30,6 +30,8 @@ inline bool parse_line(const std::string& line, float& start, float& end, std::s
     while (getline(ss,data_segment,'|') ) {
         uint8_t delim = data_segment.find(": ");
         data_segment.erase(0,delim+2);
+        std::string::iterator end_pos = std::remove(data_segment.begin(), data_segment.end(), ' ');
+        data_segment.erase(end_pos, data_segment.end());
 
         switch (index) {
             case 0:
