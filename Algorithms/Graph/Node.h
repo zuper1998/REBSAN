@@ -51,7 +51,7 @@ public:
 
     void export_to_graphviz(std::stringstream& ss) const;
 
-    auto get_edges_between(float _start, float _end) {
+    auto get_edges_between(const float _start, const float _end) {
         visiblity_interval<edge_data> v_finder(_start,_end);
         auto edge_iterator = edges  | std::views::filter([v_finder](auto &vi) {
                 return vi.during(v_finder);

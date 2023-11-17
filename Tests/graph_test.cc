@@ -99,14 +99,14 @@ TEST(BigGraphTest, PathGeneration) {
     Node& destination = tvg.getNode("H");
 
     const auto data = tvg.path_from_to(&start,&destination);
-    /*for(const tvg_path& path : data) {
+    for(const tvg_path& path : data) {
         for(auto edge : path) {
             std::cout<< edge << " || ";
         }
 
         std::cout<<std::endl;
 
-    }*/
+    }
 
 
     ASSERT_EQ(data.size(),18);

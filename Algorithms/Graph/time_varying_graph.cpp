@@ -39,6 +39,7 @@ std::list<tvg_path> time_varying_graph::path_from_to(Node* start,Node* dest) {
 
     for (auto edge : start->getEdges()) {
         Node* next_node = edge.getData().second;
+
         std::cout << next_node->getName()<<std::endl;
 
 
@@ -66,7 +67,7 @@ std::list<tvg_path> time_varying_graph::path_from_to_during(Node* start,Node* de
 
 
     std::list<tvg_path> ret{};
-    if( REBSAN_MAX_DEPTH < visited.size() ) {
+    if( REBSAN_MAX_DEPTH < std::ranges::count(visited,true) ) {
         return ret;
     };
 
@@ -91,7 +92,7 @@ std::list<tvg_path> time_varying_graph::path_from_to_during(Node* start,Node* de
 
 
         std::vector<bool> new_map = visited;
-        visited[getNodeIndex(next_node)] = true;
+        new_map[getNodeIndex(next_node)] = true;
         // Recursion
         auto next_path = path_from_to_during(next_node,destination,n_si, std::move( new_map));
 
