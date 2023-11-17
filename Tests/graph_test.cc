@@ -101,7 +101,7 @@ TEST_F(GraphTest, PathGeneration) {
 
 
 TEST(BigGraphTest, PathGeneration) {
-    time_varying_graph tvg= file_utility::load_tvg_from_file("/home/andris/CLionProjects/REBSAN/TestInput/TEST_SAT.sat");
+    time_varying_graph tvg= file_utility::load_tvg_from_file("/home/narcano/CLionProjects/REBSAN/TestInput/TEST_SAT.sat");
 
     Node& start = tvg.getNode("B");
     Node& destination = tvg.getNode("H");

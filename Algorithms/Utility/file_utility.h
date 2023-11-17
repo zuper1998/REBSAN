@@ -101,6 +101,7 @@ inline time_varying_graph file_utility::load_tvg_from_file(const std::string& fi
 }
 
 inline std::string file_utility::load_from_file(const fs::path& path) {
+
     std::ifstream f(path, std::ios::in | std::ios::binary);
     const auto file_size = fs::file_size(path);
 
