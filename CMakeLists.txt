@@ -3,6 +3,11 @@ project(REBSAN)
 
 set(CMAKE_CXX_STANDARD 23)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ")
+
+include_directories("/home/narcano/llvm-project/build/include/x86_64-linux-gnu/c++/v1")
+
 
 include(FetchContent)
 FetchContent_Declare(
@@ -22,6 +27,7 @@ add_executable(REBSAN main.cpp
         Algorithms/Utility/SearchInterval.h
         Algorithms/Utility/file_utility.h
 )
+
 
 
 enable_testing()

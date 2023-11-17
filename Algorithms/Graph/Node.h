@@ -40,13 +40,16 @@ public:
         return edges;
     }
 
-    const std::string& getName() {
+    [[nodiscard]] const std::string& getName() const{
         return name;
     }
 
+    Node(const Node&)=delete;
+    Node( Node&&)=delete;
+
     static std::string edge_export_to_graphviz(const visiblity_interval<edge_data>& edge,const std::string &from);
 
-    std::string export_to_graphviz() const;
+    void export_to_graphviz(std::stringstream& ss) const;
 
     auto get_edges_between(float _start, float _end) {
         visiblity_interval<edge_data> v_finder(_start,_end);

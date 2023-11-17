@@ -7,7 +7,7 @@
 #include <algorithm>
 
 
-#define MAX_LEN 55.1;
+#define MAX_LEN 3000;
 
 class search_interval {
     float begin;

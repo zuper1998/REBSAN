@@ -10,21 +10,31 @@
 #include <iostream>
 #include <algorithm>
 #include <filesystem>
-#include <set>
+#include <vector>
 
 #include "Node.h"
 
+#define REBSAN_MAX_DEPTH 4
 
 typedef std::list<visiblity_interval<edge_data>> tvg_path;
 
 class time_varying_graph {
+
     std::unordered_map<std::string,Node> nodes;
-
-
 
 public:
     const std::unordered_map<std::string,Node>& getNodes() {
         return nodes;
+    }
+
+
+    uint getNodeIndex(const Node& n) {
+        return distance(nodes.begin(),nodes.find(n.getName()));
+    }
+
+    uint getNodeIndex(const Node* n) {
+        uint data = distance(nodes.begin(),nodes.find(n->getName()));
+        return distance(nodes.begin(),nodes.find(n->getName()));
     }
 
     time_varying_graph() = default;
@@ -33,7 +43,7 @@ public:
 
     Node& getNode(std::string);
 
-    std::list<tvg_path> path_from_to_during(Node*,Node*,search_interval si,std::set<Node*>);
+    std::list<tvg_path> path_from_to_during(Node*,Node*,search_interval si,std::vector<bool>);
 
     std::list<tvg_path> path_from_to(Node*,Node*);
 

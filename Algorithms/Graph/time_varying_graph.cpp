@@ -4,7 +4,10 @@
 
 #include "time_varying_graph.h"
 
-float calc_tvg_path_tr(tvg_path& path) {
+
+
+
+float calc_tvg_path_tr(const tvg_path& path) {
 
     auto get_min_data =[](visiblity_interval<edge_data> e1,visiblity_interval<edge_data> e2) {
         return e1.getData().first < e2.getData().first;
@@ -36,8 +39,17 @@ std::list<tvg_path> time_varying_graph::path_from_to(Node* start,Node* dest) {
 
     for (auto edge : start->getEdges()) {
         Node* next_node = edge.getData().second;
+        std::cout << next_node->getName()<<std::endl;
 
-        auto cur_path = path_from_to_during(next_node,dest,search_interval{edge.start,edge.end},std::set<Node*>{start ,next_node});
+
+        std::vector<bool> visited(nodes.size()+1,false);
+        visited[getNodeIndex(start)] = true;
+        visited[getNodeIndex(next_node)] = true;
+
+
+
+        auto cur_path = path_from_to_during(next_node,dest,search_interval{edge.start,edge.end},visited);
+
         for (tvg_path& path : cur_path) {
             path.push_front(edge);
         }
@@ -50,10 +62,13 @@ std::list<tvg_path> time_varying_graph::path_from_to(Node* start,Node* dest) {
 
 
 std::list<tvg_path> time_varying_graph::path_from_to_during(Node* start,Node* destination,search_interval si,
-    std::set<Node*> visited) {
+    std::vector<bool> visited) {
+
 
     std::list<tvg_path> ret{};
-
+    if( REBSAN_MAX_DEPTH < visited.size() ) {
+        return ret;
+    };
 
 
     for (auto edge : start->get_edges_between(si)) {
@@ -63,8 +78,8 @@ std::list<tvg_path> time_varying_graph::path_from_to_during(Node* start,Node* de
         search_interval n_si = si.addInterval(edge.start,edge.end);
 
         Node* next_node = edge.getData().second;
-        // Test if new interval is too large (it returns -1)
-        if (!n_si.isValid() || visited.contains(next_node)) {
+
+        if (!n_si.isValid() || visited[getNodeIndex(next_node)]) {
             continue;
         }
 
@@ -75,10 +90,10 @@ std::list<tvg_path> time_varying_graph::path_from_to_during(Node* start,Node* de
         }
 
 
-        std::set<Node*> new_map = visited;
-        new_map.insert(next_node);
+        std::vector<bool> new_map = visited;
+        visited[getNodeIndex(next_node)] = true;
         // Recursion
-        auto next_path = path_from_to_during(next_node,destination,n_si, new_map);
+        auto next_path = path_from_to_during(next_node,destination,n_si, std::move( new_map));
 
         // Once returned from recursion it means we either ran out of interval time or we have a target
         for (tvg_path& path : next_path) {
@@ -96,10 +111,15 @@ std::list<tvg_path> time_varying_graph::path_from_to_during(Node* start,Node* de
 
 tvg_path time_varying_graph::getBestPath(std::list<tvg_path> paths) {
 
+    if (paths.size()==0) {
+        return {};
+    }
+
     auto compate_tr = [](tvg_path p1,tvg_path p2) {return calc_tvg_path_tr(p1)<calc_tvg_path_tr(p2);};
     auto max = std::ranges::max_element(paths,compate_tr);
 
     return *max;
+
 }
 
 std::string time_varying_graph::export_path_to_graphviz(tvg_path path, std::string from) {
@@ -122,8 +142,8 @@ std::string time_varying_graph::export_to_graphviz() {
     std::stringstream ss;
 
     ss << "digraph {" << std::endl;
-    for(auto data : nodes) {
-        ss << data.second.export_to_graphviz();
+    for(auto& data : nodes) {
+        data.second.export_to_graphviz(ss);
     }
     ss << "}" << std::endl;
 
@@ -132,7 +152,7 @@ std::string time_varying_graph::export_to_graphviz() {
 
 
 std::ostream& operator<<(std::ostream&os,const time_varying_graph& tvg) {
-    for(auto data:tvg.nodes) {
+    for(auto &data:tvg.nodes) {
         os << data.second << std::endl;
     }
 
