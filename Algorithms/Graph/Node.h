@@ -8,7 +8,6 @@
 #include <list>
 #include <ranges>
 #include <utility>
-#include <vector>
 
 #include "../Utility/SearchInterval.h"
 #include "../Utility/visiblity_interval.h"
@@ -44,6 +43,8 @@ public:
     const std::string& getName() {
         return name;
     }
+
+    static std::string edge_export_to_graphviz(const visiblity_interval<edge_data>& edge,const std::string &from);
 
     std::string export_to_graphviz() const;
 

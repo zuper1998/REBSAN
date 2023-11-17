@@ -7,14 +7,15 @@
 #include <sstream>
 #include "Node.h"
 
-std::string edge_export_to_graphviz(const visiblity_interval<edge_data>& edge,const std::string &from) {
+
+std::string Node::edge_export_to_graphviz(const visiblity_interval<edge_data>& edge,const std::string &from) {
 
 
     char* label_data = new char[200];
     sprintf(label_data,"%s -> %s [label=\"[%f, %f] - %f \"]",from.c_str(),edge.getData().second->getName().c_str(),edge.start,edge.end,edge.getData().first);
 
     // Clang version
-    //std::string label_data = std::format("%s -> %s [label=\"[%f, %f] - %f \"]",from,data.second->getName(),start,end,data.first);
+    //std::string label_data = std::format("%s -> %s [label=\"[%f, %f] - %f \"]",from,edge.getData().second->getName(),edge.start,edge.end,edge.getData().first);
 
 
     return label_data;

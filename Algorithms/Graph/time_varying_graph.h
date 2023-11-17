@@ -37,15 +37,15 @@ public:
 
     std::list<tvg_path> path_from_to(Node*,Node*);
 
-    tvg_path getBestPath(std::list<tvg_path>);
-
     std::string export_to_graphviz();
 
     void save_graph_to_file(std::filesystem::path);
 
     friend std::ostream& operator<<(std::ostream&os,const time_varying_graph& tvg);
 
+    static tvg_path getBestPath(std::list<tvg_path>);
 
+    static std::string export_path_to_graphviz(tvg_path path, std::string from);
 };
 
 

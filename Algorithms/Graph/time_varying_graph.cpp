@@ -5,12 +5,14 @@
 #include "time_varying_graph.h"
 
 float calc_tvg_path_tr(tvg_path& path) {
-    float min = path.front().getData().first;
-    for(auto edge : path) {
-        min = std::min(min, edge.getData().first);
 
-    }
-    return min;
+    auto get_min_data =[](visiblity_interval<edge_data> e1,visiblity_interval<edge_data> e2) {
+        return e1.getData().first < e2.getData().first;
+    };
+
+    auto min = std::ranges::min_element(path,get_min_data);
+
+    return (*min).getData().first;
 }
 
 Node& time_varying_graph::addNode(std::string name) {
@@ -93,8 +95,24 @@ std::list<tvg_path> time_varying_graph::path_from_to_during(Node* start,Node* de
 
 
 tvg_path time_varying_graph::getBestPath(std::list<tvg_path> paths) {
-    //TODO after clang ...
-    std::ranges::max_element(paths);
+
+    auto compate_tr = [](tvg_path p1,tvg_path p2) {return calc_tvg_path_tr(p1)<calc_tvg_path_tr(p2);};
+    auto max = std::ranges::max_element(paths,compate_tr);
+
+    return *max;
+}
+
+std::string time_varying_graph::export_path_to_graphviz(tvg_path path, std::string from) {
+    std::stringstream ss;
+
+    ss << "digraph {" << std::endl;
+    for(auto edge : path) {
+        ss << Node::edge_export_to_graphviz(edge,from) << std::endl;
+        from = edge.getData().second->getName();
+    }
+    ss << "}" << std::endl;
+
+    return ss.str();
 
 }
 

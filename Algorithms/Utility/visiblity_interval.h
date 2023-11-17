@@ -43,7 +43,8 @@ public:
 
 
 
-    std::string export_to_graphviz(const std::string& from);
+
+
 
     const TR_TYPE& getData() const {
         return data;

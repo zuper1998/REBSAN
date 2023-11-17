@@ -108,16 +108,17 @@ TEST(BigGraphTest, PathGeneration) {
 
     const auto data = tvg.path_from_to(&start,&destination);
 
-    for(const tvg_path& path : data) {
-        for(auto edge : path) {
-            std::cout<< edge << " || ";
-        }
 
-        std::cout<<std::endl;
-
-    }
 
     ASSERT_EQ(data.size(),2);
+
+    std::cout << tvg.export_to_graphviz();
+
+    tvg_path best = time_varying_graph::getBestPath(data);
+
+    std::cout << time_varying_graph::export_path_to_graphviz(best,start.getName());
+
+
 }
 
 

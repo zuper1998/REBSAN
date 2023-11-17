@@ -1,1 +1,5 @@
 /cmake-build-debug/
+/InputFiles/Test_QSAT_CROS_LOW.txt.sat
+/InputFiles/Test_QSAT_CROS_LOWMID2.txt.sat
+/InputFiles/Test_QSAT_CROS_MID.txt.sat
+/InputFiles/Test_QSAT_RETRO_LOWMID1.txt.sat
