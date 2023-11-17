@@ -21,6 +21,7 @@ class time_varying_graph {
     std::unordered_map<std::string,Node> nodes;
 
 
+
 public:
     const std::unordered_map<std::string,Node>& getNodes() {
         return nodes;
@@ -35,6 +36,8 @@ public:
     std::list<tvg_path> path_from_to_during(Node*,Node*,search_interval si,std::set<Node*>);
 
     std::list<tvg_path> path_from_to(Node*,Node*);
+
+    tvg_path getBestPath(std::list<tvg_path>);
 
     std::string export_to_graphviz();
 

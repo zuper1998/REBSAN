@@ -4,7 +4,14 @@
 
 #include "time_varying_graph.h"
 
+float calc_tvg_path_tr(tvg_path& path) {
+    float min = path.front().getData().first;
+    for(auto edge : path) {
+        min = std::min(min, edge.getData().first);
 
+    }
+    return min;
+}
 
 Node& time_varying_graph::addNode(std::string name) {
     if (!nodes.contains(name)) {
@@ -83,6 +90,14 @@ std::list<tvg_path> time_varying_graph::path_from_to_during(Node* start,Node* de
 
     return ret;
 }
+
+
+tvg_path time_varying_graph::getBestPath(std::list<tvg_path> paths) {
+    //TODO after clang ...
+    std::ranges::max_element(paths);
+
+}
+
 
 
 std::string time_varying_graph::export_to_graphviz() {
