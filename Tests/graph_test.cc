@@ -132,7 +132,6 @@ TEST(PathGeneration, LongDivergingWithCycle) {
 
 TEST(PathGeneration, Complex) {
     time_varying_graph tvg= file_utility::load_tvg_from_file("/home/narcano/CLionProjects/REBSAN/TestInput/TEST_SAT.sat");
-
     Node& start = tvg.getNode("B");
     Node& destination = tvg.getNode("H");
 

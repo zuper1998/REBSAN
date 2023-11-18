@@ -6,6 +6,7 @@
 int main() {
     std::cout << "Init tvg" <<std::endl;
     time_varying_graph tvg= file_utility::load_tvg_from_file("/home/narcano/CLionProjects/REBSAN/InputFiles/Test_QSAT_CROS_LOW.txt.sat");
+    tvg.setDepth(4);
 
     std::cout << "Done init"<<std::endl;
 

@@ -40,6 +40,8 @@ std::list<tvg_path> time_varying_graph::path_from_to(Node* start,Node* dest) {
     for (auto edge : start->getEdges()) {
         Node* next_node = edge.getData().second;
 
+        std::cout << next_node <<std::endl;
+
         std::vector<bool> visited(nodes.size()+1,false);
         visited[getNodeIndex(start)] = true;
         visited[getNodeIndex(next_node)] = true;
@@ -113,7 +115,7 @@ tvg_path time_varying_graph::getBestPath(std::list<tvg_path> paths) {
         return {};
     }
 
-    auto compate_tr = [](tvg_path p1,tvg_path p2) {return calc_tvg_path_tr(p1)<calc_tvg_path_tr(p2);};
+    auto compate_tr = [](const tvg_path& p1,const tvg_path& p2) {return calc_tvg_path_tr(p1)<calc_tvg_path_tr(p2);};
     auto max = std::ranges::max_element(paths,compate_tr);
 
     return *max;

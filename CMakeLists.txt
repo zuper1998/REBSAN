@@ -3,7 +3,7 @@ project(REBSAN)
 
 set(CMAKE_CXX_STANDARD 23)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Ofast")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ")
 
 include_directories("/home/narcano/llvm-project/build/include/x86_64-linux-gnu/c++/v1")
