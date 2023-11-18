@@ -8,7 +8,9 @@
 #include <sstream>
 
 
+class Node;
 
+typedef std::pair<float,Node*> edge_data;
 
 template <typename TR_TYPE=float>
 class visiblity_interval {

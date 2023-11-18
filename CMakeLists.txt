@@ -26,6 +26,8 @@ add_executable(REBSAN main.cpp
         Algorithms/Graph/Node.h
         Algorithms/Utility/SearchInterval.h
         Algorithms/Utility/file_utility.h
+        Algorithms/Utility/tvg_path.cpp
+        Algorithms/Utility/tvg_path.h
 )
 
 
@@ -47,6 +49,8 @@ add_executable(
         Tests/GraphTest.h
         Tests/test_file_load.cc
         Algorithms/Utility/file_utility.h
+        Algorithms/Utility/tvg_path.cpp
+        Algorithms/Utility/tvg_path.h
 )
 
 

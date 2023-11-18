@@ -13,10 +13,9 @@
 #include <vector>
 
 #include "Node.h"
+#include "../Utility/tvg_path.h"
 
 #define REBSAN_MAX_DEPTH 4
-
-typedef std::list<visiblity_interval<edge_data>> tvg_path;
 
 class time_varying_graph {
 

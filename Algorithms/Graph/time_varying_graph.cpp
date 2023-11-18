@@ -13,7 +13,7 @@ float calc_tvg_path_tr(const tvg_path& path) {
         return e1.getData().first < e2.getData().first;
     };
 
-    auto min = std::ranges::min_element(path,get_min_data);
+    auto min = std::ranges::min_element(path.getPaths(),get_min_data);
 
     return (*min).getData().first;
 }
@@ -52,7 +52,7 @@ std::list<tvg_path> time_varying_graph::path_from_to(Node* start,Node* dest) {
         auto cur_path = path_from_to_during(next_node,dest,search_interval{edge.start,edge.end},visited);
 
         for (tvg_path& path : cur_path) {
-            path.push_front(edge);
+            path.push_to_front(edge);
         }
         ret.splice(ret.end(),cur_path);
 
@@ -86,7 +86,7 @@ std::list<tvg_path> time_varying_graph::path_from_to_during(Node* start,Node* de
 
         if (*next_node==*destination) {
             // Add LAST edge
-            ret.push_back({edge});
+            ret.push_back(tvg_path{edge});
             continue;
         }
 
@@ -98,7 +98,7 @@ std::list<tvg_path> time_varying_graph::path_from_to_during(Node* start,Node* de
 
         // Once returned from recursion it means we either ran out of interval time or we have a target
         for (tvg_path& path : next_path) {
-            path.push_front(edge);
+            path.push_to_front(edge);
         }
         ret.splice(ret.end(),next_path);
 
@@ -127,7 +127,7 @@ std::string time_varying_graph::export_path_to_graphviz(tvg_path path, std::stri
     std::stringstream ss;
 
     ss << "digraph {" << std::endl;
-    for(auto edge : path) {
+    for(auto edge : path.getPaths()) {
         ss << Node::edge_export_to_graphviz(edge,from) << std::endl;
         from = edge.getData().second->getName();
     }

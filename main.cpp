@@ -14,7 +14,7 @@ int main() {
 
     const auto data = tvg.path_from_to(&start,&destination);
     for(const tvg_path& path : data) {
-        for(auto edge : path) {
+        for(auto edge : path.getPaths()) {
             std::cout<< edge << " || ";
         }
 

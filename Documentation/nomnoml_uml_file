@@ -1,0 +1,7 @@
+[time_varying_grapgh] +- [Node]
+[time_varying_grapgh] -> [tvg_path]
+[time_varying_grapgh] -> [search_interval]
+
+[Node] +- [visibility_interval]
+
+[tvg_path] +- [visibility_interval]

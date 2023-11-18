@@ -13,9 +13,7 @@
 #include "../Utility/visiblity_interval.h"
 
 
-class Node;
 
-typedef std::pair<float,Node*> edge_data;
 
 typedef std::list<visiblity_interval<edge_data>> edge_container;
 
