@@ -32,7 +32,7 @@ public:
 
     void setDepth(int REBSAN_DEPTH) {
         std::cerr << "RESETING THE MAX DEPTH FOR TVG TO: " <<REBSAN_DEPTH;
-        REBSAN_DEPTH = REBSAN_MAX_DEPTH;
+        REBSAN_MAX_DEPTH = REBSAN_DEPTH;
     }
 
     const std::unordered_map<std::string,Node>& getNodes() {
