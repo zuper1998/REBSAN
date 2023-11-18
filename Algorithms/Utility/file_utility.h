@@ -73,7 +73,7 @@ inline time_varying_graph file_utility::load_tvg_from_file(const std::string& fi
 
     std::ifstream f(path, std::ios::in | std::ios::binary);
 
-    time_varying_graph ret{};
+    time_varying_graph ret{15};
 
     std::string line;
     while( getline(f,line) ) {

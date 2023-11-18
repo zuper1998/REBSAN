@@ -1,0 +1,16 @@
+start: 5.6 | end: 15.9 | NODE_FROM: A | NODE_TO: B | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: B | NODE_TO: C | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: C | NODE_TO: D | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: D | NODE_TO: E | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: E | NODE_TO: F | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: F | NODE_TO: G | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: G | NODE_TO: H | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: H | NODE_TO: I | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: I | NODE_TO: J | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: E | NODE_TO: F1 | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: F1 | NODE_TO: G1 | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: G1 | NODE_TO: H1 | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: H1 | NODE_TO: I1 | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: I1 | NODE_TO: J | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: H1 | NODE_TO: H | DATA: 6.7
+start: 5.6 | end: 15.9 | NODE_FROM: H | NODE_TO: H1 | DATA: 6.7

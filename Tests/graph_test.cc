@@ -92,35 +92,76 @@ TEST_F(GraphTest, PathGeneration) {
 
 
 
-TEST(BigGraphTest, PathGeneration) {
+TEST(PathGeneration, Long) {
+    time_varying_graph tvg= file_utility::load_tvg_from_file("/home/narcano/CLionProjects/REBSAN/TestInput/TestLongSingle.sat");
+    Node& start = tvg.getNode("A");
+    Node& destination = tvg.getNode("J");
+
+    const auto data = tvg.path_from_to(&start,&destination);
+
+    ASSERT_EQ(data.size(),1);
+    ASSERT_EQ((*data.begin()).getPaths().size(),9);
+}
+
+TEST(PathGeneration, LongDiverging) {
+    time_varying_graph tvg= file_utility::load_tvg_from_file("/home/narcano/CLionProjects/REBSAN/TestInput/TestLongDouble.sat");
+    Node& start = tvg.getNode("A");
+    Node& destination = tvg.getNode("J");
+
+    const auto data = tvg.path_from_to(&start,&destination);
+
+    ASSERT_EQ(data.size(),2);
+    for (const auto& path : data) {
+        ASSERT_EQ(path.getPaths().size(),9);
+    }
+}
+
+TEST(PathGeneration, LongDivergingWithCycle) {
+    time_varying_graph tvg= file_utility::load_tvg_from_file("/home/narcano/CLionProjects/REBSAN/TestInput/TestLongDoubleCycle.sat");
+    Node& start = tvg.getNode("A");
+    Node& destination = tvg.getNode("J");
+
+    const auto data = tvg.path_from_to(&start,&destination);
+
+    ASSERT_EQ(data.size(),4);
+    for (const auto& path : data) {
+        ASSERT_TRUE(path.getPaths().size() == 9 || path.getPaths().size() == 10);
+    }
+}
+
+
+TEST(PathGeneration, Complex) {
     time_varying_graph tvg= file_utility::load_tvg_from_file("/home/narcano/CLionProjects/REBSAN/TestInput/TEST_SAT.sat");
 
     Node& start = tvg.getNode("B");
     Node& destination = tvg.getNode("H");
 
     const auto data = tvg.path_from_to(&start,&destination);
-    for(const tvg_path& path : data) {
-        for(auto edge : path.getPaths()) {
-            std::cout<< edge << " || ";
-        }
 
-        std::cout<<std::endl;
 
+
+    for (auto p : data) {
+        std::cout << p.export_path_to_graphviz(start.getName());
     }
-
 
     ASSERT_EQ(data.size(),18);
 
-    //std::cout << tvg.export_to_graphviz();
 
-    tvg_path best = time_varying_graph::getBestPath(data);
 
-    //std::cout << time_varying_graph::export_path_to_graphviz(best,start.getName());
 
 
 }
 
+/*
+*     time_varying_graph tvg= file_utility::load_tvg_from_file("/home/narcano/CLionProjects/REBSAN/TestInput/TEST_SAT.sat");
 
+    Node& start = tvg.getNode("B");
+    Node& destination = tvg.getNode("H");
 
+    const auto data = tvg.path_from_to(&start,&destination);
 
+    ASSERT_EQ(data.size(),18);
+
+    tvg_path best = time_varying_graph::getBestPath(data);
+ */
 

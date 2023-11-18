@@ -40,9 +40,6 @@ std::list<tvg_path> time_varying_graph::path_from_to(Node* start,Node* dest) {
     for (auto edge : start->getEdges()) {
         Node* next_node = edge.getData().second;
 
-        std::cout << next_node->getName()<<std::endl;
-
-
         std::vector<bool> visited(nodes.size()+1,false);
         visited[getNodeIndex(start)] = true;
         visited[getNodeIndex(next_node)] = true;

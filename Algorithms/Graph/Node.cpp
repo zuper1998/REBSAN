@@ -32,7 +32,6 @@ void Node::export_to_graphviz(std::stringstream& ss) const {
     for(visiblity_interval<edge_data> edge : edges) {
         ss << edge_export_to_graphviz(edge,name) << std::endl;
     }
-    std::cout << name << std::endl;
 }
 
 void Node::add_edge(const visiblity_interval<edge_data> &new_edge) {

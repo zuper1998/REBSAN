@@ -15,13 +15,21 @@
 #include "Node.h"
 #include "../Utility/tvg_path.h"
 
-#define REBSAN_MAX_DEPTH 4
 
 class time_varying_graph {
 
     std::unordered_map<std::string,Node> nodes;
 
+    int REBSAN_MAX_DEPTH = 4;
+
 public:
+    time_varying_graph() = default;
+
+    explicit time_varying_graph(int REBSAN_DEPTH) {
+        REBSAN_MAX_DEPTH = REBSAN_DEPTH;
+        std::cerr << "RESETING THE MAX DEPTH FOR TVG TO: " <<REBSAN_DEPTH;
+    }
+
     const std::unordered_map<std::string,Node>& getNodes() {
         return nodes;
     }
@@ -36,7 +44,6 @@ public:
         return distance(nodes.begin(),nodes.find(n->getName()));
     }
 
-    time_varying_graph() = default;
 
     Node& addNode(std::string);
 
